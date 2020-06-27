@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
+import { formValidation } from '@/utils/validation/form-validation';
 
 export const Test: React.FC = () => {
   return (
@@ -11,14 +12,18 @@ export const Test: React.FC = () => {
           console.log({ values });
         }}
         initialValues={{ name: '' }}
+        validate={(values) => formValidation.validateForm(values)}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             {/* name */}
             <Field name="name">
-              {({ input }) => (
+              {({ input, meta }) => (
                 <div>
                   <label htmlFor="">Name:</label>
                   <input {...input} />
+                  {meta.error && meta.touched && (
+                    <div>{JSON.stringify(meta)}</div>
+                  )}
                 </div>
               )}
             </Field>
