@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "*",
     "eslint-plugin-react": "*",
     "file-loader": "*",
-    "html-webpack-plugin": "*",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "*",
     "identity-obj-proxy": "*",
     "is-ci-cli": "*",
@@ -91,9 +91,13 @@
     "webpack-merge": "*"
   },
   "dependencies": {
-    "@emotion/core": "*",
+    "@emotion/core": "^10.0.28",
     "@emotion/styled": "*",
+    "@lemoncode/fonk": "^1.3.0",
+    "@lemoncode/fonk-final-form": "^2.3.4",
+    "final-form": "^4.20.0",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-final-form": "^6.5.0"
   }
 }

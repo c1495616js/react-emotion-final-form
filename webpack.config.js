@@ -158,7 +158,7 @@ module.exports = (env) => {
   /** DEV Config */
   const devConfig = {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'eval-source-map',
     devServer: {
       contentBase: PATHS.dist,
       host: HOST,
@@ -167,6 +167,7 @@ module.exports = (env) => {
       hot: true,
       historyApiFallback: true,
       writeToDisk: true,
+      watchContentBase: true,
       stats: 'errors-only',
       overlay: {
         errors: true,

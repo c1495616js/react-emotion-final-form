@@ -89,3 +89,9 @@ in `tsconfig.json`:
 ## Good Ref:
 
 https://www.sitepoint.com/react-with-typescript-best-practices/
+
+## Issues
+
+### gyp: No Xcode or CLT version detected
+
+- https://medium.com/flawless-app-stories/gyp-no-xcode-or-clt-version-detected-macos-catalina-anansewaa-38b536389e8d
