@@ -1,40 +1,44 @@
 import React from 'react';
-import { Form, Field } from 'react-final-form';
-import { formValidation } from '@/utils/validation/form-validation';
+import { useForm } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
+import { yupResolver } from '@hookform/resolvers';
+import * as yup from 'yup';
 
-export const Test: React.FC = () => {
+interface IFormInputs {
+  firstName: string;
+  age: number;
+}
+
+const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  age: yup
+    .number()
+    .positive()
+    .integer()
+    .required()
+    .min(20),
+});
+
+const App: React.FC = () => {
+  const { register, handleSubmit, errors, control } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data: IFormInputs): void => console.log(data);
+
   return (
-    <div>
-      <h1>React Final Form and Fonk</h1>
-      <h2>Wire transfer form</h2>
-      <Form
-        onSubmit={(values) => {
-          console.log({ values });
-        }}
-        initialValues={{ name: '' }}
-        validate={(values) => formValidation.validateForm(values)}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            {/* name */}
-            <Field name="name">
-              {({ input, meta }) => (
-                <div>
-                  <label htmlFor="">Name:</label>
-                  <input {...input} />
-                  {meta.error && meta.touched && (
-                    <div>{JSON.stringify(meta)}</div>
-                  )}
-                </div>
-              )}
-            </Field>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="text" name="firstName" ref={register} />
+        <p>{errors.firstName?.message}</p>
 
-            {/* submit btn */}
-            <div className="buttons">
-              <button type="submit">Submit</button>
-            </div>
-          </form>
-        )}
-      />
-    </div>
+        <input type="text" name="age" ref={register} />
+        <p>{errors.age?.message}</p>
+
+        <input type="submit" />
+      </form>
+      <DevTool control={control} /> {/* set up the dev tool */}
+    </>
   );
 };
+
+export default App;

@@ -22,6 +22,12 @@ module.exports = {
   ],
   rules: {
     strict: ['error', 'never'],
+    '@typescript-eslint/interface-name-prefix': [
+      'error',
+      {
+        prefixWithI: 'always',
+      },
+    ],
   },
   env: {
     browser: true,
